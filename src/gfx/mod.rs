@@ -1,11 +1,15 @@
 pub use self::gl::GlApi;
+
 mod gl;
 
 pub mod gfx_api
 {
+    pub fn get_api() -> impl GfxApi {
+        return super::GlApi::new();
+    }
+
     pub trait GfxApi
     {
-        fn new() -> Self;
-        fn get_ver() -> String;
+        fn get_ver(self) -> String;
     }
 }

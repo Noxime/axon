@@ -5,14 +5,17 @@ pub struct GlApi
 
 }
 
-impl GfxApi for GlApi {
-    fn new() -> GfxApi {
+impl GlApi {
+    pub fn new() -> Self {
         return GlApi {
 
-        };
+        }
     }
+}
 
-    fn get_ver() -> String {
+impl GfxApi for GlApi {
+
+    fn get_ver(self) -> String {
         return String::from("OpenGL backend v0.1.0");
     }
 }
