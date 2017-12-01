@@ -1,6 +1,3 @@
-#![feature(conservative_impl_trait)]
-
-extern crate glium;
 //Disabled because OSX
 //extern crate vulkano;
 
@@ -11,7 +8,7 @@ mod gfx;
 
 fn main() {
     //Initialize different parts of the engine
-    let api = gfx_api::get_api();
+    let mut api = gfx_api::get_api();
 
     //Print some engine info
     // The `.fold`s are for printing info in a nice, indented manner
@@ -29,6 +26,6 @@ fn main() {
     };
 
     loop {
-
+        api.poll_event();
     }
 }

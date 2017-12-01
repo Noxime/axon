@@ -9,7 +9,7 @@ pub mod gfx_api
     pub fn get_api() -> Box<GfxApi> {
 
         //TODO: Detect vk support
-        let vk_supported = false;
+        let vk_supported = true;
 
         if vk_supported {
             return Box::new(super::VkApi::new());
@@ -18,10 +18,10 @@ pub mod gfx_api
         }
 
     }
-
     pub trait GfxApi
     {
         fn get_ver(&self) -> Vec<String>;
         fn open_window(&self, width: u32, height: u32, title: String) -> Result<u64, String>;
+        fn poll_event(&mut self);
     }
 }

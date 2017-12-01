@@ -1,5 +1,5 @@
-use glium::*;
-
+extern crate glium;
+use self::glium::*;
 
 use gfx::gfx_api::GfxApi;
 
@@ -31,8 +31,8 @@ impl GlApi {
 
         return GlApi {
             rid: Cell::new(0u64),
-            events_loop: events_loop,
-            display: display,
+            events_loop,
+            display,
         }
     }
 }
@@ -58,5 +58,14 @@ impl GfxApi for GlApi {
         self.display.gl_window().show();
 
         Ok(self.rid())
+    }
+
+    fn poll_event(&mut self) {
+
+        self.display.draw().finish();
+
+        self.events_loop.poll_events(|e| {
+            println!("{:?}", e);
+        });
     }
 }
